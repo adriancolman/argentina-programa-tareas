@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>tarea 3 </title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+    <!-- //TAREA: En otro archivo distinto,
+// Por cada clase de r/argentina programa existente, vamos a pedir:
+// horas, minutos y segundos de cada video. Ej. Si un video dura
+// 2 horas, 38 minutos y 20 segundos, vamos a rellenar 3 campos de texto con
+// cada dato.
+// al apretar el botón "Calcular tiempo total", debe mostrar en un
+// <strong> pre-creado el tiempo total de los videos. -->
+
+    <div class="display"  style="width: 200px; padding: 20px; display: flex; flex-direction: column; margin: 10px auto;">
+     <label for="horas">hora</label>
+     <input type="number" min="0" max="23"  id="hora" name="hora" class="ingreso">
+     <label for="minutos">minutos</label>
+     <input type="number" min="0" max="59"  id="minutos" name="minutos" class="ingreso">
+     <label for="segundos">segundos</label>
+     <input type="number" min="0" max="59"  id="segundos" name="segundos" class="ingreso">
+     <button id="ingresar">ingresar</button>
+    </div>
+
+    
+    <div id="duracion-total">
+        
+    </div>
+    
+ 
+ 
+    
+
+    <script src='tarea-3.js'></script>
+</body>
+</html>

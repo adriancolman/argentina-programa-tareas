@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Clase 5</title>
+    <style>
+        .container-form{
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            width: 800px;
+            height: 800px;
+            margin:auto;
+        }
+        #form-salario{
+            display: flex;
+            flex-direction: column;
+            margin: 20px;
+        }
+        .titulo{
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="titulo">
+            <h1>vamos a manejar el dom</h1>
+        </div>
+    </div>
+    <div class="container-form">
+        <form action="" id="form-salario" onsubmit="return false">
+            <label for="salario-anual" >Ingrese su salario anual</label>
+            <input type="number" id="salario-anual" name="salario-anual" style="margin: 20px;">
+            <button id="calcular" style="margin: 20px;">calcular</button>
+            <input type="text" disabled id="salario-mensual" style="margin: 20px;">
+        </form>
+    </div>
+
+
+
+
+    <script src="tarea-clase-5.js"></script>
+</body>
+</html>
