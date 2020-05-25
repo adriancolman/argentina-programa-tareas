@@ -25,11 +25,11 @@ const numerosLista =document.querySelectorAll("#item-promedio");
 const divisor = numerosLista.length;
 let promedio = 0;
 let numeros;
-let min =  Number(numerosLista[0].innerHTML);
-let max =  Number(numerosLista[0].innerHTML);
+let min =  Number(numerosLista[0].innerHTML); //debí haber usado textContent
+let max =  Number(numerosLista[0].innerHTML); //debí haber usado textContent
 let iguales;
     for(let i=0; i<numerosLista.length; i++){
-        numeros = Number(numerosLista[i].innerHTML);
+        numeros = Number(numerosLista[i].innerHTML); //debí haber usado textContent
         resultado += numeros;
         if(numeros<min){
             min = numeros;
