@@ -29,8 +29,8 @@ h1{
     padding: 20px;
     font-size: 19px;
     font-weight: 200;
-    
 }
+
 .texto-familia{
     margin: 10px auto;
     padding: 10px;
@@ -57,12 +57,12 @@ input{
     display: inline-block;
 }
 button{
-    max-width: 100px;
+    max-width: 80px;
     background: #DC9F69;
     margin: 10px auto;
     padding: 10px;
     border-radius: 30px;
-    font-size: 16px;
+    font-size: 14px;
     display: block;
 }
 .container-resultado{
@@ -75,3 +75,4 @@ button{
     margin: 0 auto;
     padding: 10px;
 }
+
