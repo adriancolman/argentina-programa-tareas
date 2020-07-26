@@ -173,18 +173,98 @@ El resultado debería ser: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55
 Desafío de programación #15: Crear una función que encuentre el número n de Fibonacci usando recursión
 
 Desafío de programación #16: Crear una función que dado un número retorne un Boolean (true/false) dependiendo si es primo o no.
+function buscarNumerosPrimos(){
+  
+  let numero = Number(prompt("ingresá un numero")) ;
+  let primo;
+  for (let i = 2; i < numero; i++) {
+    let divisor = i;
+    if(numero%divisor===0){
+      
+      return false;
 
-Desafío de programación #17: Calcular la suma de los dígitos positivos de un número entero positivo
+    }
+    else{
+      primo = numero;
+      console.log(primo +" es primo");
+    }
+  }
+  
+}
+buscarNumerosPrimos();
+/*Desafío de programación #17: Calcular la suma de los dígitos positivos de un número entero positivo
 Ejemplo:
    123 = 1 + 2 + 3 = 6
    2 = 2
-   1234 = 1 + 2 + 3 + 4 = 10
+   1234 = 1 + 2 + 3 + 4 = 10 
+   numero = Number(prompt("ingresa tu numero"));
+   function separarNumeros(n){
+     let digitos= n.toString();
+     let acumulador = 0
+     for (let i = 0; i<digitos.length; i++){
+       acumulador = acumulador + Number(digitos[i]);
+     }
+     return acumulador
+   }
+   console.log(separarNumeros(numero));
+   /*
 
 Desafío de programación #18: Imprimir los primeros 100 números primos
 
-Desafío de programación #19: Crear una función que retorne un array con los primeros números "n-primos" mayores que un número particular definido "alComienzo"
+
+let minimo = 2;
+const maximo = 100;
+
+
+for(;minimo<maximo; minimo++){
+  if(numerosPrimos(minimo)){
+    console.log(minimo);
+    
+  }
+}
+
+function numerosPrimos(numero){
+  for (let i=2; i < numero; i++){
+    if (numero%i===0){
+      return false;
+    }
+
+  }
+  return numero !==1;
+}
+
+/*
+
+D de programación #19: Crear una función que retorne un array con los primeros números "n-primos" mayores que un número particular definido "alComienzo"
 Ejemplo:
   Quiero los primeros 4 números primos mayores que 5, el resultado debería ser: [7,11,13,17,19]
+  let numero = Number(prompt("numero de inicio"));
+  let cantidad = Number(prompt("cantidad de primos"));
+  
+  function cantidadNumerosPrimos(cantidad){
+    for(let i=0; i<cantidad; i++){
+      while(numerosPrimos(numero)===false){
+        numero++;
+      }
+      if(numerosPrimos(numero)){
+        console.log(numero);
+        numero++;
+      }
+    }
+  }
+  function numerosPrimos(numero){
+    for (let i=2; i < numero; i++){
+      if (numero%i===0){
+        return false;
+
+      }
+  
+    }
+    return numero !==1;
+  }
+  cantidadNumerosPrimos(cantidad);
+  
+  /*
 
 Desafío de programación #20: Rotar un array hacia la izquierda una posición
 Ejemplo:
@@ -192,10 +272,29 @@ Ejemplo:
   [5] debería quedar como [5]
   [4,3,2,1] debería quedar como [3,2,1,4]
 
+
+  let numeros = [1,2,3,4,5,6,7];
+  function restarIndexArray(array){
+    const primero = array.shift();
+    array.push(primero);
+    return array;
+  }
+  console.log(restarIndexArray(numeros));
+  
+
 Desafío de programación #21: Rotar un array a la derecha una posición
 Ejemplo:
   [2,3,4,1] debería quedar como [1,2,3,4]
   [2,3] debería quedar como [3,2]
+  let numeros = [4,3,5,6,2];
+  function rotarArrayDerecha(array){
+    const elementoModificado = array.pop();
+    array.unshift(elementoModificado);
+    return numeros;
+  }
+  console.log(rotarArrayDerecha(numeros));
+  /*
+
 
 Desafío de programación #22: Invertir un array
 Ejemplo:

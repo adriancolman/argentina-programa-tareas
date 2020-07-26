@@ -26,7 +26,6 @@ let salarios;
 
 
 $botonIngresarCantindad.onclick = function obtenerCantidadFamiliares(event){
-    event.preventDefault();
     eliminarFamiliares();
     const $numeroDeFamiliares = Number(document.querySelector("#cantidad-de-familiares").value);
     if (validarFamiliares($numeroDeFamiliares) === "") {
@@ -34,10 +33,13 @@ $botonIngresarCantindad.onclick = function obtenerCantidadFamiliares(event){
     crearBotonCalcularEdad();
     crearBotonCalcularSalario();
     crearBotonReset();
+    event.preventDefault();
+
     //return $numeroDeFamiliares;
     } else {
         alert(validarFamiliares($numeroDeFamiliares));
     }    }
+    
 function eliminarFamiliares(){
     while($containerFamiliares.firstChild){
         $containerFamiliares.removeChild($containerFamiliares.firstChild);
@@ -77,31 +79,38 @@ function crearFamiliares(cantidadFamiliares){
     }
 }
 function crearCampos(index){
+    const $divRow = document.createElement("div");
+    $divRow.classList= "row d-flex flex-nowrap";
     const $textoCampoEdad = document.createElement("p");
+    $textoCampoEdad.classList= " mr-2"
     const $createInputEdad = document.createElement("input");
     $createInputEdad.type = "number";
     $createInputEdad.min= "0";
     $createInputEdad.max = "100";
-    $createInputEdad.className= "edad";
+    $createInputEdad.classList= " edad form-control input-form mr-4 ";
     $textoCampoEdad.textContent = `ingresa la edad de tu familiar # ${index + 1}`;
     
-    $containerFamiliares.appendChild($textoCampoEdad);
-    $containerFamiliares.appendChild($createInputEdad);
+    $containerFamiliares.appendChild($divRow);
+    const texto = $divRow.append($textoCampoEdad);
+    $textoCampoEdad.insertAdjacentElement("afterend", $createInputEdad);
     consultarSiPercibeSalario(index);
     //crearInputsSalario(index);
 
 }
 function consultarSiPercibeSalario(index){
+    const $divRow = document.createElement("div");
+    $divRow.classList= "row mb-4 d-flex flex-nowrap";
     $checkBoxSalario = document.createElement("input");
     $checkBoxSalario.type = "checkbox";
-    $checkBoxSalario.className = `boton-check`;    
+    $checkBoxSalario.classList = `boton-check d-block mr-3 align-self-center check${index}`;    
     let consultaSalario = document.createTextNode(" tildá si querés calcular su salario");
     
-    $containerFamiliares.appendChild($checkBoxSalario);
-    $containerFamiliares.appendChild(consultaSalario);
+    $containerFamiliares.appendChild($divRow);
+    $divRow.appendChild($checkBoxSalario);
+    $divRow.appendChild(consultaSalario);
     $checkBoxSalario.onclick = function(){
         this.nextSibling.textContent = "";
-        this.style.display= "none";
+        this.className= "oculto";
         crearInputsSalario(index);
     }         
         
@@ -113,7 +122,7 @@ function crearInputsSalario(index){
     $label.textContent= "Indicar cantidad que percibe familiar # " + (index + 1);
     $label.style.display = "flex";
     $inputSalario = document.createElement("input");
-    $inputSalario.className= "input-salario"
+    $inputSalario.className= "input-salario form-control"
     $inputSalario.type = "number";
     $inputSalario.min= "0";
     $inputSalario.placeholder = "$";
@@ -129,7 +138,11 @@ function crearBotonCalcularEdad(){
     const $BotonCalcular = document.createElement("button");
     $BotonCalcular.textContent = "calcular edad";
     $BotonCalcular.id= "boton-calcular";
-    $containerFamiliares.appendChild($BotonCalcular);
+    $BotonCalcular.classList= "btn btn-primary boton-calcular"
+    const $divRow = document.createElement("div");
+    $divRow.classList= "row mt-4  justify-content-center";
+    $divRow.appendChild($BotonCalcular);
+    $containerFamiliares.appendChild($divRow);
 
     $BotonCalcular.onclick = function(e){
         obtenerEdades();
@@ -145,6 +158,7 @@ function crearBotonCalcularEdad(){
 function crearBotonReset(){
     const $botonReset = document.createElement("button");
     $botonReset.textContent = "resetear";
+    $botonReset.classList= "boton-reset form-control btn btn-warning";
     $botonReset.type= "reset";
     $containerBotones.appendChild($botonReset);
 
@@ -166,16 +180,22 @@ function crearBotonReset(){
 function crearBotonCalcularSalario(){
     let $botonCalcularSalario = document.createElement("button");
     $botonCalcularSalario.textContent = "calcular salarios";
+    $botonCalcularSalario.classList = "boton-salario  btn btn-light";
     $containerBotones.appendChild($botonCalcularSalario);
 
     $botonCalcularSalario.onclick = function(e){
         obtenerSalarios();
-        validarSalarios(salarios);
-        calcularSalarioMaximo(salarios);
-        calcularSalarioMinimo(salarios);
-        calcularSalarioPromedio(salarios);
-        mostrarResultadosSalarios();
-        e.preventDefault();
+        if(salarios.length<1){
+            e.preventDefault();
+        }
+            else{
+            validarSalarios(salarios);
+            calcularSalarioMaximo(salarios);
+            calcularSalarioMinimo(salarios);
+            calcularSalarioPromedio(salarios);
+            mostrarResultadosSalarios();
+            e.preventDefault();
+        } 
 
         //obtenerAsalariados();
 
@@ -199,9 +219,9 @@ function validarObtenerEdades(edades) {
         else if (edad>120){
             alert(`familiar #${index + 1} la edad debe ser menor a 120`);
         }
-        else if(!/^[0-9]$/.test(edad)){
-            alert("el campo edad solo admite numeros");
-        }
+        //else if(!/^[0-9]$/.test(edad)){
+            //alert("el campo edad solo admite numeros");
+        //}
         else { return "";
         }
     });

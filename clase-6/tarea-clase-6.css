@@ -1,69 +1,30 @@
-*{
-    margin: 0;
-    padding: auto;
-    box-sizing: border-box;
-}
-body{
-    background-color: #0e0903;
-    background-position: center;
-    background-size: cover;
-    display: flex;
-    flex-flow: column nowrap;
-    color: #DC9F69;
-}
-header{
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
 
-}
-h1{
-    text-shadow: blanchedalmond 3px;
-    padding: 20px;
-}
-
-.form-container{
-    display: flex;
-    margin: 20px auto;
-    flex-flow: column nowrap;
-    padding: 20px;
-    font-size: 19px;
-    font-weight: 200;
-}
-
-.texto-familia{
-    margin: 10px auto;
-    padding: 10px;
-    
-
-}
-form{
-    border: solid 1px white;
-    display: flex;
-    flex-direction: column;
-    margin: 10px auto;
-    padding: 15px;
-}
-
-label{
-    padding: 10px;
-    border-radius: 30%;
-}
-input{
-    width: 80px;
+.input-form{
+    width: 30%;
     border-radius: 10px;
-    padding: 6px;
-    margin: 5px auto;
+    max-width: 100px;
+    
+   
     display: inline-block;
 }
-button{
-    max-width: 80px;
-    background: #DC9F69;
-    margin: 10px auto;
-    padding: 10px;
-    border-radius: 30px;
-    font-size: 14px;
-    display: block;
+.boton-calcular{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+hr{
+    background-color: white;
+}
+.oculto{
+    display: none;
+}
+.input-salario{
+    max-width: 100px;
+}
+
+.container-botones{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
 }
 .container-resultado{
     display: flex;
@@ -74,5 +35,14 @@ button{
 .container-resultado p{
     margin: 0 auto;
     padding: 10px;
+}
+
+.boton-salario{
+    max-width: 100px;
+    margin: 10px auto;
+}
+.boton-reset{
+    max-width: 100px;
+    margin: 10px auto;
 }
 

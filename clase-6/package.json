@@ -1,0 +1,16 @@
+{
+  "name": "clase-6",
+  "version": "1.0.0",
+  "description": "form que calcula edad y salario",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "adrian colman",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^4.5.0",
+    "jquery": "^3.5.1",
+    "popper.js": "^1.16.1"
+  }
+}
