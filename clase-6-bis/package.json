@@ -1,0 +1,19 @@
+{
+  "name": "clase-6-bis",
+  "version": "1.0.0",
+  "description": "prueba bis",
+  "main": "pruebas-tarea-6.js",
+  "dependencies": {
+    "bootstrap": "^4.5.2",
+    "cypress": "^4.12.1",
+    "jquery": "^3.5.1",
+    "popper.js": "^1.16.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cypress": "cypress open"
+  },
+  "author": "a colman",
+  "license": "ISC"
+}

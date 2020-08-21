@@ -4,7 +4,8 @@
   "description": "form que calcula edad y salario",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cypress": "cypress open"
   },
   "author": "adrian colman",
   "license": "ISC",
@@ -12,5 +13,8 @@
     "bootstrap": "^4.5.0",
     "jquery": "^3.5.1",
     "popper.js": "^1.16.1"
+  },
+  "devDependencies": {
+    "cypress": "^4.12.1"
   }
 }

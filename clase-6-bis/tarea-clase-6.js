@@ -16,56 +16,59 @@ const $textoEdadpromedio = document.querySelector("#promedio-familiar");
 const $textoSalarioMinimo = document.querySelector("#menor-salario");
 const $textoSalarioMaximo = document.querySelector("#mayor-salario");
 const $textoSalarioPromedio = document.querySelector("#salario-promedio");
-let $checkBoxSalario ;
+let $checkBoxSalario;
 let totalEdades;
 let edadFamiliar;
 let $label;
 let $inputSalario;
 let checkSalarios;
 let salarios;
+let estadoSalario;
+let estadoEdad;
 
 
-$botonIngresarCantindad.onclick = function obtenerCantidadFamiliares(event){
+$botonIngresarCantindad.onclick = function obtenerCantidadFamiliares(event) {
     eliminarFamiliares();
     const $numeroDeFamiliares = Number(document.querySelector("#cantidad-de-familiares").value);
     if (validarFamiliares($numeroDeFamiliares) === "") {
-    crearFamiliares($numeroDeFamiliares);
-    crearBotonCalcularEdad();
-    crearBotonCalcularSalario();
-    crearBotonReset();
-    event.preventDefault();
+        crearFamiliares($numeroDeFamiliares);
+        crearBotonCalcularEdad();
+        crearBotonCalcularSalario();
+        crearBotonReset();
+        event.preventDefault();
 
-    //return $numeroDeFamiliares;
+        //return $numeroDeFamiliares;
     } else {
         alert(validarFamiliares($numeroDeFamiliares));
-    }    }
-    
-function eliminarFamiliares(){
-    while($containerFamiliares.firstChild){
+    }
+}
+
+function eliminarFamiliares() {
+    while ($containerFamiliares.firstChild) {
         $containerFamiliares.removeChild($containerFamiliares.firstChild);
     }
     const eliminarTexto = $containerResultado.childNodes; //los p dentro de containerResultado
-    eliminarTexto.forEach (function(texto){ //a cada uno les modifico el texto
-        texto.textContent =  "";
-    }); 
-    
-    
-    while($containerBotones.firstChild){
+    eliminarTexto.forEach(function (texto) { //a cada uno les modifico el texto
+        texto.textContent = "";
+    });
+
+
+    while ($containerBotones.firstChild) {
         $containerBotones.removeChild($containerBotones.firstChild);
     }
 }
 
-function validarFamiliares(familiares){
-    if(familiares===0 || familiares ===1){
+function validarFamiliares(familiares) {
+    if (familiares === 0 || familiares === 1) {
         return "el campo familiares debe tener al menos dos familiares";
     }
-    if(familiares<0){
+    if (familiares < 0) {
         return "el campo familiares solo permite valores positivos"
     }
-    if(familiares>30){
+    if (familiares > 30) {
         return "no se permiten mas de 30 familiares";
     }
-    if(!/^[0-9]{1,2}$/.test(familiares)){
+    if (!/^[0-9]{1,2}$/.test(familiares)) {
         return "el campo solo admite numeros"
     }
     else {
@@ -73,23 +76,23 @@ function validarFamiliares(familiares){
     }
 }
 
-function crearFamiliares(cantidadFamiliares){
-    for(let i=0; i<cantidadFamiliares; i++){
+function crearFamiliares(cantidadFamiliares) {
+    for (let i = 0; i < cantidadFamiliares; i++) {
         crearCampos(i);
     }
 }
-function crearCampos(index){
+function crearCampos(index) {
     const $divRow = document.createElement("div");
-    $divRow.classList= "row d-flex flex-nowrap";
+    $divRow.classList = "row d-flex flex-nowrap";
     const $textoCampoEdad = document.createElement("p");
-    $textoCampoEdad.classList= " mr-2"
+    $textoCampoEdad.classList = " mr-2"
     const $createInputEdad = document.createElement("input");
     $createInputEdad.type = "number";
-    $createInputEdad.min= "0";
+    $createInputEdad.min = "0";
     $createInputEdad.max = "100";
-    $createInputEdad.classList= " edad form-control input-form mr-4 ";
+    $createInputEdad.classList = " edad form-control input-form mr-4 ";
     $textoCampoEdad.textContent = `ingresa la edad de tu familiar # ${index + 1}`;
-    
+
     $containerFamiliares.appendChild($divRow);
     const texto = $divRow.append($textoCampoEdad);
     $textoCampoEdad.insertAdjacentElement("afterend", $createInputEdad);
@@ -97,26 +100,26 @@ function crearCampos(index){
     //crearInputsSalario(index);
 
 }
-function consultarSiPercibeSalario(index){
+function consultarSiPercibeSalario(index) {
     const $divRow = document.createElement("div");
-    $divRow.classList= "row mb-4 d-flex flex-nowrap";
+    $divRow.classList = "row mb-4 d-flex flex-nowrap";
     $checkBoxSalario = document.createElement("input");
     $checkBoxSalario.type = "checkbox";
-    $checkBoxSalario.classList = `boton-check d-block mr-3 align-self-center check${index}`;    
+    $checkBoxSalario.classList = `boton-check d-block mr-3 align-self-center check${index}`;
     let consultaSalario = document.createTextNode(" tildá si querés calcular su salario");
-    
+
     $containerFamiliares.appendChild($divRow);
     $divRow.appendChild($checkBoxSalario);
     $divRow.appendChild(consultaSalario);
-    $checkBoxSalario.onclick = function(){
+    $checkBoxSalario.onclick = function () {
         this.nextSibling.textContent = "";
-        this.className= "oculto";
+        this.className = "oculto";
         crearInputsSalario(index);
-    }         
-        
+    }
+
 }
 
-function crearInputsSalario(index){
+function crearInputsSalario(index) {
     const scrollOption = {
         left: '0',
         top: '700',
@@ -127,33 +130,35 @@ function crearInputsSalario(index){
     );
     $label = document.createElement("label");
     $label.className = "label-salario"
-    $label.textContent= "Indicar cantidad que percibe familiar # " + (index + 1);
+    $label.textContent = "Indicar cantidad que percibe familiar # " + (index + 1);
     $label.style.display = "flex";
     $inputSalario = document.createElement("input");
-    $inputSalario.className= "input-salario form-control"
+    $inputSalario.className = "input-salario form-control"
     $inputSalario.type = "number";
-    $inputSalario.min= "0";
+    $inputSalario.min = "0";
     $inputSalario.placeholder = "$";
-    $inputSalario.style.display= "flex";
+    $inputSalario.style.display = "flex";
 
     $containerFamiliares.appendChild($label);
     $containerFamiliares.appendChild($inputSalario);
 
-    
+
 }
 
-function crearBotonCalcularEdad(){
+function crearBotonCalcularEdad() {
     window.scrollTo(0, 300);
     const $BotonCalcular = document.createElement("button");
     $BotonCalcular.textContent = "calcular edad";
-    $BotonCalcular.id= "boton-calcular";
-    $BotonCalcular.classList= "btn btn-primary boton-calcular"
+    $BotonCalcular.id = "boton-calcular";
+    $BotonCalcular.classList = "btn btn-primary boton-calcular"
     const $divRow = document.createElement("div");
-    $divRow.classList= "row mt-4  justify-content-center";
+    $divRow.classList = "row mt-4  justify-content-center";
     $divRow.appendChild($BotonCalcular);
     $containerFamiliares.appendChild($divRow);
 
-    $BotonCalcular.onclick = function(e){
+    $BotonCalcular.onclick = function (e) {
+        e.preventDefault();
+
         const scrollOption = {
             left: '0',
             top: '5000',
@@ -164,43 +169,47 @@ function crearBotonCalcularEdad(){
         );
         obtenerEdades();
         validarObtenerEdades(edadFamiliar);
-        calcularEdadMaxima(edadFamiliar);
-        calcularEdadMinima(edadFamiliar);
-        calcularPromedioEdad(edadFamiliar);
-        mostrarResultadosEdades();
-        e.preventDefault();}
+        if(estadoEdad) {
+            calcularEdadMaxima(edadFamiliar);
+            calcularEdadMinima(edadFamiliar);
+            calcularPromedioEdad(edadFamiliar);
+            mostrarResultadosEdades();
+
+        }
+
+    }
 }
 
 
-function crearBotonReset(){
+function crearBotonReset() {
     const $botonReset = document.createElement("button");
     $botonReset.textContent = "resetear";
-    $botonReset.classList= "boton-reset form-control btn btn-warning";
-    $botonReset.type= "reset";
+    $botonReset.classList = "boton-reset form-control btn btn-warning";
+    $botonReset.type = "reset";
     $containerBotones.appendChild($botonReset);
 
-    $botonReset.onclick = function(){
-        
-        while($containerFamiliares.firstChild){
+    $botonReset.onclick = function () {
+
+        while ($containerFamiliares.firstChild) {
             $containerFamiliares.removeChild($containerFamiliares.firstChild);
         }
         const eliminarTexto = $containerResultado.childNodes; //los p dentro de containerResultado
-        eliminarTexto.forEach (function(texto){ //a cada uno les modifico el texto
-            texto.textContent =  "";
-        }); 
-        
-        while($containerBotones.firstChild){
+        eliminarTexto.forEach(function (texto) { //a cada uno les modifico el texto
+            texto.textContent = "";
+        });
+
+        while ($containerBotones.firstChild) {
             $containerBotones.removeChild($containerBotones.firstChild);
         }
     }
 }
-function crearBotonCalcularSalario(){
+function crearBotonCalcularSalario() {
     let $botonCalcularSalario = document.createElement("button");
     $botonCalcularSalario.textContent = "calcular salarios";
     $botonCalcularSalario.classList = "boton-salario  btn btn-light";
     $containerBotones.appendChild($botonCalcularSalario);
 
-    $botonCalcularSalario.onclick = function(e){
+    $botonCalcularSalario.onclick = function (e) {
         const scrollOption = {
             left: '0',
             top: '900',
@@ -210,17 +219,40 @@ function crearBotonCalcularSalario(){
             scrollOption
         );
         obtenerSalarios();
-        if(salarios.length<1){
+        if (salarios.length < 1) {
             e.preventDefault();
         }
-            else{
-            validarSalarios(salarios);
-            calcularSalarioMaximo(salarios);
-            calcularSalarioMinimo(salarios);
-            calcularSalarioPromedio(salarios);
-            mostrarResultadosSalarios();
+        else {
             e.preventDefault();
-        } 
+            salarios.forEach(function (salario, index) {
+                if (validarSalario(salario) === `el salario no puede ser menor a $1000`) {
+                    alert(`el salario de familiar  # ${index + 1} no puede ser menor a $1000`);
+                    estadoSalario = false;
+                    return estadoSalario;
+                }
+                if (validarSalario(salario) === "salario correcto") {
+                    estadoSalario = true;
+                }
+
+            });
+
+            if (estadoSalario) {
+                calcularSalarioMaximo(salarios);
+                calcularSalarioMinimo(salarios);
+                calcularSalarioPromedio(salarios);
+                mostrarResultadosSalarios();
+            }
+
+
+            if (validarSalario === `el salario no puede ser menor a $1000`) {
+                alert(`el salario no puede ser menor a $1000`);
+            }
+            else if (validarSalario === "el campo salario solo admite numeros") {
+                alert("el campo salario solo admite numeros");
+            }
+
+
+        }
 
         //obtenerAsalariados();
 
@@ -231,103 +263,108 @@ function crearBotonCalcularSalario(){
 
 function obtenerEdades() {
     totalEdades = document.querySelectorAll(".edad");
-    edadFamiliar= new Array;
-    for (let i=0; i<totalEdades.length; i++){
-    edadFamiliar.push(Number(totalEdades[i].value));}
+    edadFamiliar = new Array;
+    for (let i = 0; i < totalEdades.length; i++) {
+        edadFamiliar.push(Number(totalEdades[i].value));
+    }
     return edadFamiliar;
 }
 function validarObtenerEdades(edades) {
-    edades.forEach(function(edad, index){
-        if (edad===0){
+    edades.forEach(function (edad, index) {
+        if (edad === 0) {
             alert(`familiar #${index + 1} la edad debe ser mayor a cero`);
+            estadoEdad = false;
+            return false;
         }
-        else if (edad>120){
+        else if (edad > 120) {
             alert(`familiar #${index + 1} la edad debe ser menor a 120`);
+            estadoEdad = false;
+            return false;
         }
-        //else if(!/^[0-9]$/.test(edad)){
-            //alert("el campo edad solo admite numeros");
-        //}
-        else { return "";
+        else if(!/^[0-9]?/.test(edad)){
+        alert("el campo edad solo admite numeros");
+        }
+        else {
+            estadoEdad = true;
         }
     });
 }
 
 function obtenerSalarios() {
-        let totalAsalariados = document.querySelectorAll(".input-salario");
-        salarios = new Array;
-        for (let i=0; i<totalAsalariados.length; i ++){
-            salarios.push(Number(totalAsalariados[i].value));
-        }   return salarios;
+    let totalAsalariados = document.querySelectorAll(".input-salario");
+    salarios = new Array;
+    for (let i = 0; i < totalAsalariados.length; i++) {
+        salarios.push(Number(totalAsalariados[i].value));
+    } return salarios;
 }
 
-function validarSalarios(salarios){
-    salarios.forEach(function(salario){
-        if(salario<1000){
-            alert(`el salario no puede ser menor a $1000`);
-        }
-        else if(!/[0-9]+$/.test(salario)){
-            alert("el campo salario solo admite numeros");
-        }
-        else{return "";}
-    });
+function validarSalario(salario) {
+    if (salario < 1000) {
+        return `el salario no puede ser menor a $1000`;
+    }
+    else if (/[^0-9]+/.test(salario)) {
+        return "el campo salario solo admite numeros";
+    }
+    else { return "salario correcto"; }
+
 }
 
-function calcularEdadMaxima(a){
+function calcularEdadMaxima(a) {
     let edadMaxima = a[0];
-     for(let i=0; i<a.length; i++){
-         if(a[i]>edadMaxima){
-             edadMaxima= a[i];
-         }
-     }
+    for (let i = 0; i < a.length; i++) {
+        if (a[i] > edadMaxima) {
+            edadMaxima = a[i];
+        }
+    }
     return edadMaxima;
 }
 
-    function calcularSalarioMaximo(a){
-        let salarioMaximo = a[0];
-        for(let i=0; i<a.length; i++){
-            if(a[i]>salarioMaximo){
-                salarioMaximo = a[i];
-            }
+function calcularSalarioMaximo(a) {
+    let salarioMaximo = a[0];
+    for (let i = 0; i < a.length; i++) {
+        if (a[i] > salarioMaximo) {
+            salarioMaximo = a[i];
         }
-        return salarioMaximo;
     }
+    return salarioMaximo;
+}
 
-function calcularEdadMinima(a){
+function calcularEdadMinima(a) {
     let edadMinima = a[0];
-    for(let i=0; i<a.length; i++){
-        if(a[i]<edadMinima){
+    for (let i = 0; i < a.length; i++) {
+        if (a[i] < edadMinima) {
             edadMinima = a[i];
         }
     }
     return edadMinima;
 }
 
-function calcularSalarioMinimo(a){
-    let salarioMinimo= a[0];
-    for(i=0; i<a.length;i++){
-        if(a[i]<salarioMinimo){
+function calcularSalarioMinimo(a) {
+    let salarioMinimo = a[0];
+    for (i = 0; i < a.length; i++) {
+        if (a[i] < salarioMinimo) {
             salarioMinimo = a[i];
         }
     }
     return salarioMinimo;
 }
 
-function calcularPromedioEdad(a){
-    let total=0;
+function calcularPromedioEdad(a) {
+    let total = 0;
     let divisor = a.length;
     let edadPromedio;
-    for(let i =0; i<a.length; i++){
+    for (let i = 0; i < a.length; i++) {
         total += a[i];
         edadPromedio = total / divisor;
     }
     return edadPromedio;
 }
 
-function calcularSalarioPromedio(a){
+function calcularSalarioPromedio(a) {
     let total = 0;
     let divisor = a.length;
     let salarioPromedio;
-    for(i=0; i<a.length; i++){
+    for (i = 0; i < a.length; i++) {
         total += a[i];
         salarioPromedio = total / divisor;
     }
@@ -335,16 +372,16 @@ function calcularSalarioPromedio(a){
 }
 
 
-function mostrarResultadosEdades(){
+function mostrarResultadosEdades() {
     $textoEdadMinima.textContent = `la menor edad de un familiar es ${calcularEdadMinima(edadFamiliar)}`;
-    $textoEdadMaxima.textContent =`la mayor edad de un familiar es ${calcularEdadMaxima(edadFamiliar)}`;
-    $textoEdadpromedio.textContent =`la edad promedio familiar es ${calcularPromedioEdad(edadFamiliar)}`;
+    $textoEdadMaxima.textContent = `la mayor edad de un familiar es ${calcularEdadMaxima(edadFamiliar)}`;
+    $textoEdadpromedio.textContent = `la edad promedio familiar es ${calcularPromedioEdad(edadFamiliar)}`;
 }
 
-function mostrarResultadosSalarios(){
-    $textoSalarioMinimo.textContent = `el menor salario de un familiar es ${calcularSalarioMinimo(salarios)}`;
-    $textoSalarioMaximo.textContent = `el mayor salario de un familiar es ${calcularSalarioMaximo(salarios)}`;
-    $textoSalarioPromedio.textContent = `el salario promedio familiar es ${calcularSalarioPromedio(salarios)}`;
+function mostrarResultadosSalarios() {
+    $textoSalarioMinimo.textContent = `el menor salario de un familiar es $ ${calcularSalarioMinimo(salarios)}`;
+    $textoSalarioMaximo.textContent = `el mayor salario de un familiar es $ ${calcularSalarioMaximo(salarios)}`;
+    $textoSalarioPromedio.textContent = `el salario promedio familiar es $ ${calcularSalarioPromedio(salarios)}`;
 }
 
 

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>tarea-1 clase-6</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="tarea-clase-6.css" />
+
+</head>
+
+<body>
+	<div class="container">
+		<header>
+			<div class="row">
+				<div class="col-12 d-flex mb-3 justify-content-center">
+					<div class="container-titulo">
+						<h1 class="titulo">CONOCÉ A TU FAMILIA</h1>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12 d-flex mb-3 justify-content-center">
+					<div class="container-subtitulo">
+						<h3>Vamos a brindarte datos que quizas desconocias</h3>
+					</div>
+				</div>
+			</div>
+		</header>
+		<main>
+			<div class="row">
+				<div class="col-12 d-flex justify-content-center mt-3 bg-danger text-white">
+					<article id="familia">
+						<div class="familia-container">
+							<div class="form-container row d-flex flex-column">
+								<p class="texto-familia justify-content-center d-flex mb-5  p-2 font-weight-bold">
+									Primero te vamos a pedir algo de informacion
+								</p>
+								<form action="">
+									<div class="row d-flex justify-content-center">
+										<label for="" class="mr-2">ingresá la cantidad de integrantes de tu
+											familia</label>
+										<input type="number" min="1" id="cantidad-de-familiares"
+											class="input-form form-control ml-2" />
+										<button id="ingresar-cantidad" class="boton-form btn btn-light ml-2">
+											ingresar
+										</button>
+									</div>
+									<div class="contenedor-de-inputs offset-sm-3 col-12 col-sm-7">
+
+										<div class="container-familiares d-flex flex-column justify-content-center mt-4 "></div>
+
+									</div>
+									<hr>
+
+									<div class="container-botones"></div>
+								</form>
+							</div>
+							<div class="row container-resultado">
+								<p id="mayor-edad"></p>
+								<p id="menor-edad"></p>
+								<p id="promedio-familiar"></p>
+								<p id="mayor-salario"></p>
+								<p id="menor-salario"></p>
+								<p id="salario-promedio"></p>
+							</div>
+						</div>
+					</article>
+				</div>
+			</div>
+		</main>
+	</div>
+
+	<script src="tarea-clase-6.js"></script>
+	<script src="pruebas-tarea-6.js"></script>
+</body>
+
+</html>
